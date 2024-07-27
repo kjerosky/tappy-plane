@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://lh4su57nmht6"]
+[gd_scene load_steps=13 format=3 uid="uid://lh4su57nmht6"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_6stcu"]
 [ext_resource type="Texture2D" uid="uid://b008n2v3w55cv" path="res://assets/background.png" id="1_ejyhv"]
@@ -26,9 +26,12 @@ size = Vector2(191, 17.8438)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2hrp"]
 size = Vector2(66.5, 17.8438)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("parallax_background")]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_td7pl"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("parallax_background", "player")]
 script = ExtResource("1_6stcu")
 parallax_background = NodePath("ParallaxBackground")
+player = NodePath("ParallaxBackground/Main/Player")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -54,9 +57,9 @@ motion_mirroring = Vector2(1616, 2.08165e-12)
 position = Vector2(400, 687)
 texture = ExtResource("3_gw5ov")
 
-[node name="Area2D" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground"]
+[node name="Area2D1" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground/Area2D1"]
 position = Vector2(0, 28.375)
 shape = SubResource("RectangleShape2D_leino")
 
@@ -100,9 +103,9 @@ shape = SubResource("RectangleShape2D_j2hrp")
 position = Vector2(1208, 687)
 texture = ExtResource("3_gw5ov")
 
-[node name="Area2D" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground2"]
+[node name="Area2D1" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground2"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground2/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground2/Area2D1"]
 position = Vector2(0, 28.375)
 shape = SubResource("RectangleShape2D_leino")
 
@@ -141,3 +144,25 @@ shape = SubResource("RectangleShape2D_ywnwn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground2/Area2D7"]
 position = Vector2(1.75, -13)
 shape = SubResource("RectangleShape2D_j2hrp")
+
+[node name="KillPlane" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlane"]
+position = Vector2(0, 726)
+shape = SubResource("WorldBoundaryShape2D_td7pl")
+
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground/Area2D1" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground/Area2D2" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground/Area2D3" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground/Area2D4" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground/Area2D5" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground/Area2D6" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground/Area2D7" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground2/Area2D1" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground2/Area2D2" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground2/Area2D3" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground2/Area2D4" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground2/Area2D5" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground2/Area2D6" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="ParallaxBackground/ForegroundScenery/Ground2/Area2D7" to="." method="_on_player_collided"]
+[connection signal="body_entered" from="KillPlane" to="." method="_on_player_collided"]

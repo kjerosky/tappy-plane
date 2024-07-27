@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7hc0pj2kqrbk"]
+[gd_scene load_steps=8 format=3 uid="uid://b7hc0pj2kqrbk"]
 
 [ext_resource type="Texture2D" uid="uid://cdjvax61nqqy6" path="res://assets/red-plane-sprite-sheet.png" id="1_6rgvn"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_rrj2o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdpyq"]
 atlas = ExtResource("1_6rgvn")
@@ -35,12 +36,13 @@ animations = [{
 size = Vector2(51, 63)
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_rrj2o")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_lvug7")
 autoplay = "default"
-frame_progress = 0.788139
+frame_progress = 0.82002
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(3.5, -5.5)
