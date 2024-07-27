@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7hc0pj2kqrbk"]
+
+[ext_resource type="Texture2D" uid="uid://cdjvax61nqqy6" path="res://assets/red-plane-sprite-sheet.png" id="1_6rgvn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdpyq"]
+atlas = ExtResource("1_6rgvn")
+region = Rect2(0, 0, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lorq6"]
+atlas = ExtResource("1_6rgvn")
+region = Rect2(88, 0, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6rly"]
+atlas = ExtResource("1_6rgvn")
+region = Rect2(176, 0, 88, 73)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lvug7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdpyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lorq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6rly")
+}],
+"loop": true,
+"name": &"default",
+"speed": 60.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb3bb"]
+size = Vector2(51, 63)
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_lvug7")
+autoplay = "default"
+frame_progress = 0.788139
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, -5.5)
+shape = SubResource("RectangleShape2D_cb3bb")

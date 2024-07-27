@@ -1,0 +1,143 @@
+[gd_scene load_steps=12 format=3 uid="uid://lh4su57nmht6"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_6stcu"]
+[ext_resource type="Texture2D" uid="uid://b008n2v3w55cv" path="res://assets/background.png" id="1_ejyhv"]
+[ext_resource type="PackedScene" uid="uid://b7hc0pj2kqrbk" path="res://scenes/player.tscn" id="3_48fvs"]
+[ext_resource type="Texture2D" uid="uid://bfh82lcw0jxvn" path="res://assets/surface.png" id="3_gw5ov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leino"]
+size = Vector2(812, 18.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofrkm"]
+size = Vector2(469.5, 11.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_440ui"]
+size = Vector2(211, 20.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysno0"]
+size = Vector2(90, 31.375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb2qg"]
+size = Vector2(106, 37.6875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywnwn"]
+size = Vector2(191, 17.8438)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2hrp"]
+size = Vector2(66.5, 17.8438)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("parallax_background")]
+script = ExtResource("1_6stcu")
+parallax_background = NodePath("ParallaxBackground")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="BackgroundScenery" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.333, 0.333)
+motion_mirroring = Vector2(1295, 2.08165e-12)
+
+[node name="DistantMountains" type="Sprite2D" parent="ParallaxBackground/BackgroundScenery"]
+position = Vector2(640, 344)
+scale = Vector2(1.62292, 1.62292)
+texture = ExtResource("1_ejyhv")
+
+[node name="Main" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="Player" parent="ParallaxBackground/Main" instance=ExtResource("3_48fvs")]
+position = Vector2(640, 360)
+
+[node name="ForegroundScenery" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1616, 2.08165e-12)
+
+[node name="Ground" type="Sprite2D" parent="ParallaxBackground/ForegroundScenery"]
+position = Vector2(400, 687)
+texture = ExtResource("3_gw5ov")
+
+[node name="Area2D" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground/Area2D"]
+position = Vector2(0, 28.375)
+shape = SubResource("RectangleShape2D_leino")
+
+[node name="Area2D2" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground/Area2D2"]
+position = Vector2(-170.75, 13.75)
+shape = SubResource("RectangleShape2D_ofrkm")
+
+[node name="Area2D3" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground/Area2D3"]
+position = Vector2(298, 9.375)
+shape = SubResource("RectangleShape2D_440ui")
+
+[node name="Area2D4" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground/Area2D4"]
+position = Vector2(299, -17.3125)
+shape = SubResource("RectangleShape2D_ysno0")
+
+[node name="Area2D5" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground/Area2D5"]
+position = Vector2(-196, -8.84375)
+shape = SubResource("RectangleShape2D_hb2qg")
+
+[node name="Area2D6" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground/Area2D6"]
+position = Vector2(-47.5, 0.921875)
+shape = SubResource("RectangleShape2D_ywnwn")
+
+[node name="Area2D7" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground/Area2D7"]
+position = Vector2(1.75, -13)
+shape = SubResource("RectangleShape2D_j2hrp")
+
+[node name="Ground2" type="Sprite2D" parent="ParallaxBackground/ForegroundScenery"]
+position = Vector2(1208, 687)
+texture = ExtResource("3_gw5ov")
+
+[node name="Area2D" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground2/Area2D"]
+position = Vector2(0, 28.375)
+shape = SubResource("RectangleShape2D_leino")
+
+[node name="Area2D2" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground2/Area2D2"]
+position = Vector2(-170.75, 13.75)
+shape = SubResource("RectangleShape2D_ofrkm")
+
+[node name="Area2D3" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground2/Area2D3"]
+position = Vector2(298, 9.375)
+shape = SubResource("RectangleShape2D_440ui")
+
+[node name="Area2D4" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground2/Area2D4"]
+position = Vector2(299, -17.3125)
+shape = SubResource("RectangleShape2D_ysno0")
+
+[node name="Area2D5" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground2/Area2D5"]
+position = Vector2(-196, -8.84375)
+shape = SubResource("RectangleShape2D_hb2qg")
+
+[node name="Area2D6" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground2/Area2D6"]
+position = Vector2(-47.5, 0.921875)
+shape = SubResource("RectangleShape2D_ywnwn")
+
+[node name="Area2D7" type="Area2D" parent="ParallaxBackground/ForegroundScenery/Ground2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ForegroundScenery/Ground2/Area2D7"]
+position = Vector2(1.75, -13)
+shape = SubResource("RectangleShape2D_j2hrp")
