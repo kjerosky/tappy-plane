@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-const JUMP_VELOCITY = -700.0
+const JUMP_VELOCITY = 700.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -23,10 +23,19 @@ func _physics_process(delta):
 	
 	if state == PlayerState.PLAYING:
 		velocity.y += gravity * delta
+		velocity.y = minf(velocity.y, JUMP_VELOCITY * 1.5)
+		
+		var look_direction := Vector2.RIGHT
+		if velocity.y < 0:
+			look_direction.y = -0.333
+		else:
+			look_direction.y = velocity.y / JUMP_VELOCITY
+		
+		look_at(position + look_direction)
 	
 	if Input.is_action_just_pressed("flap"):
 		state = PlayerState.PLAYING
-		velocity.y = JUMP_VELOCITY
+		velocity.y = -JUMP_VELOCITY
 	
 	move_and_slide()
 
